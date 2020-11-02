@@ -251,7 +251,8 @@ public class RepositoriesIT extends AbstractSnapshotIntegTestCase {
 
         // Make repository to throw exception when trying to delete stale indices
         String masterNode = internalCluster().getMasterName();
-        ((MockRepository)internalCluster().getInstance(RepositoriesService.class, masterNode).repository("test-repo")).setThrowExceptionWhileDelete(true);
+        ((MockRepository)internalCluster().getInstance(RepositoriesService.class, masterNode).repository("test-repo"))
+            .setThrowExceptionWhileDelete(true);
 
         logger.info("--> creating snapshot");
         CreateSnapshotResponse createSnapshotResponse = client.admin().cluster().prepareCreateSnapshot("test-repo", "test-snap-1")
